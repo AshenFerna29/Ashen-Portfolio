@@ -76,14 +76,6 @@ const Projects: React.FC = () => {
 
   const displayedProjects = showAll ? projects : projects.filter(p => p.featured);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -107,17 +99,14 @@ const Projects: React.FC = () => {
           </div>
 
           {/* Projects Grid */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedProjects.map(project => (
               <motion.div
                 key={project.id}
                 variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
                 whileHover={{ y: -10 }}
                 className="bg-slate-50 dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg group"
               >
@@ -168,9 +157,9 @@ const Projects: React.FC = () => {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Show More Button */}
+          {/* Show More / Show Less */}
           {projects.length > 3 && (
             <div className="text-center mt-12">
               <button
