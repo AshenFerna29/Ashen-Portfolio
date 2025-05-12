@@ -13,7 +13,6 @@ type SkillCategory = 'all' | 'languages' | 'frameworks' | 'tools' | 'databases';
 
 interface Skill {
   name: string;
-  level: number;
   category: Exclude<SkillCategory, 'all'>[];
   icon: JSX.Element;
 }
@@ -23,30 +22,30 @@ const Skills: React.FC = () => {
 
   const skills: Skill[] = [
     // Languages
-    { name: 'Java', level: 85, category: ['languages'], icon: <FaJava className="text-orange-500 text-3xl" /> },
-    { name: 'JavaScript', level: 60, category: ['languages'], icon: <FaJs className="text-yellow-400 text-3xl" /> },
-    { name: 'Python', level: 70, category: ['languages'], icon: <FaPython className="text-blue-400 text-3xl" /> },
-    { name: 'HTML5', level: 95, category: ['languages'], icon: <FaHtml5 className="text-orange-600 text-3xl" /> },
-    { name: 'CSS3', level: 90, category: ['languages'], icon: <FaCss3Alt className="text-blue-600 text-3xl" /> },
-    { name: 'Kotlin', level: 60, category: ['languages'], icon: <SiKotlin className="text-purple-500 text-3xl" /> },
-    { name: 'Dart', level: 50, category: ['languages'], icon: <SiDart className="text-blue-500 text-3xl" /> },
+    { name: 'Java', category: ['languages'], icon: <FaJava className="text-orange-500 text-3xl" /> },
+    { name: 'JavaScript', category: ['languages'], icon: <FaJs className="text-yellow-400 text-3xl" /> },
+    { name: 'Python',  category: ['languages'], icon: <FaPython className="text-blue-400 text-3xl" /> },
+    { name: 'HTML5', category: ['languages'], icon: <FaHtml5 className="text-orange-600 text-3xl" /> },
+    { name: 'CSS3', category: ['languages'], icon: <FaCss3Alt className="text-blue-600 text-3xl" /> },
+    { name: 'Kotlin', category: ['languages'], icon: <SiKotlin className="text-purple-500 text-3xl" /> },
+    { name: 'Dart',  category: ['languages'], icon: <SiDart className="text-blue-500 text-3xl" /> },
 
     // Frameworks
-    { name: 'React.js', level: 50, category: ['frameworks'], icon: <FaReact className="text-cyan-400 text-3xl" /> },
-    { name: 'Flutter', level: 55, category: ['frameworks'], icon: <SiFlutter className="text-blue-400 text-3xl" /> },
-    { name: 'Jetpack Compose', level: 65, category: ['frameworks'], icon: <SiJetpackcompose className="text-green-500 text-3xl" /> },
+    { name: 'React.js',  category: ['frameworks'], icon: <FaReact className="text-cyan-400 text-3xl" /> },
+    { name: 'Flutter',  category: ['frameworks'], icon: <SiFlutter className="text-blue-400 text-3xl" /> },
+    { name: 'Jetpack Compose', category: ['frameworks'], icon: <SiJetpackcompose className="text-green-500 text-3xl" /> },
 
     // Tools
-    { name: 'Figma', level: 95, category: ['tools'], icon: <FaFigma className="text-pink-500 text-3xl" /> },
-    { name: 'Git', level: 90, category: ['tools'], icon: <FaGitAlt className="text-red-500 text-3xl" /> },
-    { name: 'VS Code', level: 95, category: ['tools'], icon: <SiVscodium className="text-blue-400 text-3xl" /> },
-    { name: 'IntelliJ IDEA', level: 80, category: ['tools'], icon: <SiIntellijidea className="text-purple-600 text-3xl" /> },
-    { name: 'Android Studio', level: 80, category: ['tools'], icon: <FaAndroid className="text-green-600 text-3xl" /> },
+    { name: 'Figma',  category: ['tools'], icon: <FaFigma className="text-pink-500 text-3xl" /> },
+    { name: 'Git',  category: ['tools'], icon: <FaGitAlt className="text-red-500 text-3xl" /> },
+    { name: 'VS Code',  category: ['tools'], icon: <SiVscodium className="text-blue-400 text-3xl" /> },
+    { name: 'IntelliJ IDEA',  category: ['tools'], icon: <SiIntellijidea className="text-purple-600 text-3xl" /> },
+    { name: 'Android Studio', category: ['tools'], icon: <FaAndroid className="text-green-600 text-3xl" /> },
 
     // Databases
-    { name: 'Firebase', level: 85, category: ['databases'], icon: <SiFirebase className="text-yellow-400 text-3xl" /> },
-    { name: 'MongoDB', level: 80, category: ['databases'], icon: <SiMongodb className="text-green-600 text-3xl" /> },
-    { name: 'MySQL', level: 75, category: ['databases'], icon: <SiMysql className="text-blue-500 text-3xl" /> }
+    { name: 'Firebase',  category: ['databases'], icon: <SiFirebase className="text-yellow-400 text-3xl" /> },
+    { name: 'MongoDB',  category: ['databases'], icon: <SiMongodb className="text-green-600 text-3xl" /> },
+    { name: 'MySQL',  category: ['databases'], icon: <SiMysql className="text-blue-500 text-3xl" /> }
   ];
 
   const categories = [
@@ -120,15 +119,8 @@ const Skills: React.FC = () => {
               >
                 <div className="mb-2">{skill.icon}</div>
                 <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-2">{skill.name}</h4>
-                <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2 mb-1">
-                  <motion.div
-                    className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, delay: index * 0.05 }}
-                  />
-                </div>
-                <span className="text-xs text-slate-500 dark:text-slate-400">{skill.level}%</span>
+               
+                
               </motion.div>
             ))}
           </motion.div>
