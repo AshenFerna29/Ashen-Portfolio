@@ -74,7 +74,7 @@ const Projects: React.FC = () => {
     }
   ];
 
-  const displayedProjects = showAll ? projects : projects.filter(project => project.featured);
+  const displayedProjects = showAll ? projects : projects.filter(p => p.featured);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -106,13 +106,13 @@ const Projects: React.FC = () => {
             </p>
           </div>
 
-          {/* Project Grid */}
+          {/* Projects Grid */}
           <motion.div
-            
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             {displayedProjects.map(project => (
               <motion.div
@@ -170,7 +170,7 @@ const Projects: React.FC = () => {
             ))}
           </motion.div>
 
-          {/* Show More / Less Button */}
+          {/* Show More Button */}
           {projects.length > 3 && (
             <div className="text-center mt-12">
               <button

@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedText from '../ui/AnimatedText';
-
-// Import real icons from react-icons
 import { FaJava, FaJs, FaPython, FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaFigma, FaAndroid } from 'react-icons/fa';
-import {
-  SiKotlin, SiDart, SiFlutter, SiJetpackcompose,
-  SiMongodb, SiFirebase, SiMysql, SiVscodium, SiIntellijidea
-} from 'react-icons/si';
+import { SiKotlin, SiDart, SiFlutter, SiJetpackcompose, SiMongodb, SiFirebase, SiMysql, SiVscodium, SiIntellijidea } from 'react-icons/si';
 
 type SkillCategory = 'all' | 'languages' | 'frameworks' | 'tools' | 'databases';
 
@@ -21,31 +16,24 @@ const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<SkillCategory>('all');
 
   const skills: Skill[] = [
-    // Languages
     { name: 'Java', category: ['languages'], icon: <FaJava className="text-orange-500 text-3xl" /> },
     { name: 'JavaScript', category: ['languages'], icon: <FaJs className="text-yellow-400 text-3xl" /> },
-    { name: 'Python',  category: ['languages'], icon: <FaPython className="text-blue-400 text-3xl" /> },
+    { name: 'Python', category: ['languages'], icon: <FaPython className="text-blue-400 text-3xl" /> },
     { name: 'HTML5', category: ['languages'], icon: <FaHtml5 className="text-orange-600 text-3xl" /> },
     { name: 'CSS3', category: ['languages'], icon: <FaCss3Alt className="text-blue-600 text-3xl" /> },
     { name: 'Kotlin', category: ['languages'], icon: <SiKotlin className="text-purple-500 text-3xl" /> },
-    { name: 'Dart',  category: ['languages'], icon: <SiDart className="text-blue-500 text-3xl" /> },
-
-    // Frameworks
-    { name: 'React.js',  category: ['frameworks'], icon: <FaReact className="text-cyan-400 text-3xl" /> },
-    { name: 'Flutter',  category: ['frameworks'], icon: <SiFlutter className="text-blue-400 text-3xl" /> },
+    { name: 'Dart', category: ['languages'], icon: <SiDart className="text-blue-500 text-3xl" /> },
+    { name: 'React.js', category: ['frameworks'], icon: <FaReact className="text-cyan-400 text-3xl" /> },
+    { name: 'Flutter', category: ['frameworks'], icon: <SiFlutter className="text-blue-400 text-3xl" /> },
     { name: 'Jetpack Compose', category: ['frameworks'], icon: <SiJetpackcompose className="text-green-500 text-3xl" /> },
-
-    // Tools
-    { name: 'Figma',  category: ['tools'], icon: <FaFigma className="text-pink-500 text-3xl" /> },
-    { name: 'Git',  category: ['tools'], icon: <FaGitAlt className="text-red-500 text-3xl" /> },
-    { name: 'VS Code',  category: ['tools'], icon: <SiVscodium className="text-blue-400 text-3xl" /> },
-    { name: 'IntelliJ IDEA',  category: ['tools'], icon: <SiIntellijidea className="text-purple-600 text-3xl" /> },
+    { name: 'Figma', category: ['tools'], icon: <FaFigma className="text-pink-500 text-3xl" /> },
+    { name: 'Git', category: ['tools'], icon: <FaGitAlt className="text-red-500 text-3xl" /> },
+    { name: 'VS Code', category: ['tools'], icon: <SiVscodium className="text-blue-400 text-3xl" /> },
+    { name: 'IntelliJ IDEA', category: ['tools'], icon: <SiIntellijidea className="text-purple-600 text-3xl" /> },
     { name: 'Android Studio', category: ['tools'], icon: <FaAndroid className="text-green-600 text-3xl" /> },
-
-    // Databases
-    { name: 'Firebase',  category: ['databases'], icon: <SiFirebase className="text-yellow-400 text-3xl" /> },
-    { name: 'MongoDB',  category: ['databases'], icon: <SiMongodb className="text-green-600 text-3xl" /> },
-    { name: 'MySQL',  category: ['databases'], icon: <SiMysql className="text-blue-500 text-3xl" /> }
+    { name: 'Firebase', category: ['databases'], icon: <SiFirebase className="text-yellow-400 text-3xl" /> },
+    { name: 'MongoDB', category: ['databases'], icon: <SiMongodb className="text-green-600 text-3xl" /> },
+    { name: 'MySQL', category: ['databases'], icon: <SiMysql className="text-blue-500 text-3xl" /> }
   ];
 
   const categories = [
@@ -58,10 +46,7 @@ const Skills: React.FC = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05 }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
   };
 
   const itemVariants = {
@@ -85,7 +70,7 @@ const Skills: React.FC = () => {
             </p>
           </div>
 
-          {/* Category Filters */}
+          {/* Category Buttons */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {categories.map(category => (
               <button
@@ -102,13 +87,14 @@ const Skills: React.FC = () => {
             ))}
           </div>
 
-          {/* Skills Grid */}
+          {/* Animated Grid */}
           <motion.div
-            key={activeCategory} // re-trigger animation on category change
+            key={activeCategory}
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             {filteredSkills.map((skill, index) => (
               <motion.div
@@ -119,8 +105,6 @@ const Skills: React.FC = () => {
               >
                 <div className="mb-2">{skill.icon}</div>
                 <h4 className="font-medium text-slate-800 dark:text-slate-200 mb-2">{skill.name}</h4>
-               
-                
               </motion.div>
             ))}
           </motion.div>
